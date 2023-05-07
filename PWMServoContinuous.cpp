@@ -17,11 +17,24 @@ void PWMServoContinuous::setSpeed(int s) {
     // Constrain the speed value to the range of -100 and 100
     speed = constrain(s, -100, 100);
   }
+  // Map the speed to a PWM value using a linear function
+  setPWMVal(map(speed, -100, 100, minPWM, maxPWM));
+}
+
+int PWMServoContinuous::getPWMVal() const {
+  return PWMVal;
+}
+
+void PWMServoContinuous::setPWMVal(int val) {
+  if (val >= minPWM && val <= maxPWM) {
+    PWMVal = val;
+  } else {
+    Serial.println("PWM value out of range");
+    PWMVal = constrain(val, minPWM, maxPWM);
+  }
 }
 
 void PWMServoContinuous::update() {
-  // Map the speed to a PWM value using a linear function
-  int pwmValue = map(speed, -100, 100, minPWM, maxPWM);
   // Set the PWM value for the servo channel
-  pwm.setPWM(channel, 0, pwmValue);
+  pwm.setPWM(channel, 0, PWMVal);
 }

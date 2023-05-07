@@ -19,7 +19,16 @@ class PageFlipperArm {
 
   public:
     // A constructor that takes an Adafruit_PWMServoDriver object, channel numbers, and optionally PWM values for each servo
-    PageFlipperArm(Adafruit_PWMServoDriver &pwmDriver, int ch1, int ch2, int ch3, int min1 = 1000, int max1 = 2000, int min2 = 150, int max2 = 600, int min3 = 0, int max3 = 180);
+    PageFlipperArm(
+      Adafruit_PWMServoDriver &pwmDriver, 
+      int CR1Pin,
+      int CR2Pin,
+      int P1Pin,
+      int CRMinPWM = 200, 
+      int CRMaxPWM = 400, 
+      int PMinPWM = 200, 
+      int PMaxPWM = 400
+    );
     // A method that sets the belt speeds based on a speed value
     void setBeltSpeeds(int speed);
     // A method that sets the rotation angle based on an angle value

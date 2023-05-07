@@ -11,10 +11,13 @@ class PWMServo {
     int minAngle;
     int maxAngle;
     int angle;
+    int PWMVal;
   
   public:
-    PWMServo(Adafruit_PWMServoDriver &pwmDriver, int ch, int minP = 150, int maxP = 600, int minA = 0, int maxA = 180);
+    PWMServo(Adafruit_PWMServoDriver &pwmDriver, uint8_t ch, int minP = 1000, int maxP = 2000, int minA = 0, int maxA = 180);
     int getAngle() const;
     void setAngle(int degrees);
+    int getPWMVal() const;
+    void setPWMVal(int val_US);
     void update();
 };
