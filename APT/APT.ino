@@ -9,36 +9,58 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 PageFlipperArm arm = PageFlipperArm(pwm, 0, 1, 2);
 
 int count;
+int number;
 // Use the methods of the PageFlipperArm object
 void setup() {
+  Serial.begin(9600);
   // Initialize the pwm object
   pwm.begin();
-  pwm.setOscillatorFrequency(27000000);
+  pwm.setOscillatorFrequency(26300000);
   pwm.setPWMFreq(50);
 
-  // Set the belt speeds to 50
-  arm.setBeltSpeeds(50);
+  arm.setBeltSpeeds(40);
+  Serial.println("Forward");
+
+  // arm.setBeltSpeeds(0);
+  // Serial.println("Stopped");
 
   // Set the rotation angle to 90 degrees
-  arm.setRotationAngle(90);
+  arm.setRotationAngle(160);
 
-  count = 0;
+  number = 3000
+
 }
 
 void loop() {
   // Update the servo positions
   arm.update();
   delay(10);
-  count++;
-  if (count==1000) {
-    arm.setBeltSpeeds(100);
+  if (millis()>number && millis()<2*number) {
+    Serial.println("Stopped (reverse next)");
+    arm.setBeltSpeeds(0);
   }
-  if (count==1500) {
-    arm.setRotationAngle(0);
+  if (millis()>2*number && millis()<3*number) {
+    Serial.println("Reverse");
+    arm.setBeltSpeeds(-40);
   }
-  if (count==2000) {
-    arm.setBeltSpeeds(-100);
-    arm.setRotationAngle(180);
-    count = 0;
+  if (millis()>3*number && millis()<4*number) {
+    Serial.println("Stopped (forward next)");
+    arm.setBeltSpeeds(0);
+  }
+  if (millis()>4*number && millis()< 5*number) {
+    Serial.println("Forward");
+    arm.setBeltSpeeds(40);
+  }
+  if (millis()>5*number && millis()<*number) {
+    Serial.println("Stopped (reverse next)");
+    arm.setBeltSpeeds(0);
+  }
+  if (millis()>2*number && millis()<3*number) {
+    Serial.println("Reverse");
+    arm.setBeltSpeeds(-40);
+  }
+  if (millis()>5*number) {
+    Serial.println("Stopped (forever!)");
+    arm.setBeltSpeeds(0);
   }
 }
