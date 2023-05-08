@@ -21,13 +21,16 @@ class PageFlipperArm {
     // A constructor that takes an Adafruit_PWMServoDriver object, channel numbers, and optionally PWM values for each servo
     PageFlipperArm(
       Adafruit_PWMServoDriver &pwmDriver, 
-      int CR1Pin,
-      int CR2Pin,
-      int P1Pin,
-      int CRMinPWM = 184, 
-      int CRMaxPWM = 430, 
-      int PMinPWM = 120, 
-      int PMaxPWM = 450
+      PWMServoContinuous cr1,
+      PWMServoContinuous cr2,
+      PWMServo p1
+      // int CR1Pin,
+      // int CR2Pin,
+      // int P1Pin,
+      // int CRMinPWM = 184, 
+      // int CRMaxPWM = 430, 
+      // int PMinPWM = 120, 
+      // int PMaxPWM = 450
     );
     // A method that sets the belt speeds based on a speed value
     void setBeltSpeeds(int speed);

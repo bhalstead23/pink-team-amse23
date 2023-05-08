@@ -1,10 +1,22 @@
 // PageFlipperArm.cpp
 #include "PageFlipperArm.h"
-PageFlipperArm::PageFlipperArm(Adafruit_PWMServoDriver &pwmDriver, int CR1Pin, int CR2Pin, int P1Pin, int CRMinPWM, int CRMaxPWM, int PMinPWM, int PMaxPWM) : 
-  pwm(pwmDriver), 
-  CR1(pwmDriver, CR1Pin, CRMinPWM, CRMaxPWM), 
-  CR2(pwmDriver, CR2Pin, CRMinPWM, CRMaxPWM), 
-  P1(pwmDriver, P1Pin, PMinPWM, PMaxPWM) {}
+PageFlipperArm::PageFlipperArm(
+  Adafruit_PWMServoDriver &pwmDriver,
+  PWMServoContinuous cr1,
+  PWMServoContinuous cr2,
+  PWMServo p1
+  // int CR1Pin, 
+  // int CR2Pin, 
+  // int P1Pin, 
+  // int CRMinPWM, 
+  // int CRMaxPWM, 
+  // int PMinPWM, 
+  // int PMaxPWM
+  ) : 
+    pwm(pwmDriver), 
+    CR1(cr1), 
+    CR2(cr2), 
+    P1(p1) {}
 
 void PageFlipperArm::setBeltSpeeds(int speed) {
   // Set the speed of CR1 using its setSpeed() method
