@@ -6,7 +6,7 @@
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
 // Create a PageFlipperArm object with channel numbers 0, 1, and 2
-PageFlipperArm arm = PageFlipperArm(pwm, 0, 1, 2, 200,400,200,400);
+PageFlipperArm arm = PageFlipperArm(pwm, 0, 1, 2);
 
 int count;
 int number;

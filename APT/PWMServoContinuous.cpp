@@ -32,6 +32,7 @@ void PWMServoContinuous::setPWMVal(int val) {
     Serial.println("PWM value out of range");
     PWMVal = constrain(val, minPWM, maxPWM);
   }
+  Serial.println(String(PWMVal));
 }
 
 void PWMServoContinuous::update() {

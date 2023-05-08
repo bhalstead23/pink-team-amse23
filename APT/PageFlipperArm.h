@@ -24,10 +24,10 @@ class PageFlipperArm {
       int CR1Pin,
       int CR2Pin,
       int P1Pin,
-      int CRMinPWM = 200, 
-      int CRMaxPWM = 400, 
-      int PMinPWM = 200, 
-      int PMaxPWM = 400
+      int CRMinPWM = 184, 
+      int CRMaxPWM = 430, 
+      int PMinPWM = 120, 
+      int PMaxPWM = 450
     );
     // A method that sets the belt speeds based on a speed value
     void setBeltSpeeds(int speed);
