@@ -6,10 +6,13 @@
 // Create an Adafruit_PWMServoDriver object
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
+PWMServoContinuous CR1 = PWMServoContinuous(pwm, 1, 184, 432);
+PWMServoContinuous CR2 = PWMServoContinuous(pwm, 2, 184, 430);
+PWMServo P1 = PWMServo(pwm, 0, 120, 450);
 
 // Create a PageFlipperArm object with channel numbers 0, 1, and 2
-// PageFlipperArm arm = PageFlipperArm(pwm, 0, 1, 2);
-PageFlipperArm arm = PageFlipperArm(pwm, )
+PageFlipperArm arm = PageFlipperArm(pwm, CR1, CR2, P1);
+// PageFlipperArm arm = PageFlipperArm(pwm, );
 
 int count;
 int number;
@@ -66,40 +69,43 @@ void setup() {
 }
 
 void loop() {
-  if (millis()>number && millis()<2*number) {
+  if (millis()<number){
+    arm.setRotationAngle(180 - map(millis(),0,number, 0, 60));  
+    Serial.println("Forward");  
+  }
+  if (millis()>number && millis()<1.1*number) {
     arm.setBeltSpeeds(0);
-    arm.setRotationAngle(180 - map(millis(),number,2*number, 0, 65));
     Serial.println("Stopped (Reverse Next)");
   }
-  if (millis()>2*number && millis()<2.25*number) {
+  if (millis()>1.1*number && millis()<1.35*number) {
     arm.setBeltSpeeds(-40);
     Serial.println("Reverse");
   }
-  if (millis()>2.25*number && millis()<2.5*number) {
+  if (millis()>1.35*number && millis()<1.6*number) {
     arm.setRotationAngle(130);
   }
-  if (millis()>2.5*number && millis()<2.75*number) {
+  if (millis()>1.6*number && millis()<1.85*number) {
     arm.setRotationAngle(140);
   }
-  if (millis()>2.75*number && millis()<3*number) {
+  if (millis()>1.85*number && millis()<2.1*number) {
     arm.setRotationAngle(150);
   }
-  if (millis()>3*number && millis()<3.5*number) {
+  if (millis()>2.1*number && millis()<2.7*number) {
     arm.setRotationAngle(160);
   }
-  if (millis()>3.5*number && millis()<4*number) {
+  if (millis()>2.7*number && millis()<3.2*number) {
     arm.setRotationAngle(170);
   }
-  if (millis()>4*number && millis()<4.25*number) {
+  if (millis()>3.2*number && millis()<3.35*number) {
     arm.setBeltSpeeds(0);
     arm.setRotationAngle(180);
     Serial.println("Stopped (Forward Next)");
   }
-  if (millis()>4.25*number && millis()<5.1*number) {
+  if (millis()>3.35*number && millis()<4.2*number) {
     arm.setBeltSpeeds(40);
     Serial.println("Forward");
   }
-  if (millis()>5.1*number) {
+  if (millis()>4.3*number) {
     arm.setBeltSpeeds(0);
     Serial.println("Stopped Forever");
   }
