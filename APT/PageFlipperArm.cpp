@@ -5,13 +5,6 @@ PageFlipperArm::PageFlipperArm(
   PWMServoContinuous cr1,
   PWMServoContinuous cr2,
   PWMServo p1
-  // int CR1Pin, 
-  // int CR2Pin, 
-  // int P1Pin, 
-  // int CRMinPWM, 
-  // int CRMaxPWM, 
-  // int PMinPWM, 
-  // int PMaxPWM
   ) : 
     pwm(pwmDriver), 
     CR1(cr1), 
